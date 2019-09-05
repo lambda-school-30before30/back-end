@@ -10,7 +10,7 @@ server.use(helmet());
 server.use(cors());
 server.use(express.json());
 
-server.use('/api/auth', authRouter);
+// server.use('/api/auth', authRouter);
 
 server.get("/", (req, res) => {
   res.send(`<h1>BUILD WEEK BAYBAY</h1>`);
