@@ -10,14 +10,23 @@ router.get('/', (req, res) => {
         .catch(err => res.send(err));
 });
 
-router.put('/:id', (req, res) => {});
+router.put('/:id', (req, res) => {
+    const { id } = req.params;
+    const userInfo = req.body;
+
+    Users.update(id, userInfo)
+        .then(updated => {
+            res.json({ message: `Updated user id ${id}`, updated });
+        })
+        .catch(err => res.status(500).json(err));
+});
 
 router.delete('/:id', (req, res) => {
     const { id } = req.params;
 
     Users.remove(id)
         .then(removed => {
-            res.status(204).json({ message: `Deleted user id ${id}`, removed });
+            res.json({ message: `Deleted user id ${id}`, removed });
         })
         .catch(err => res.status(500).json(err));
 });

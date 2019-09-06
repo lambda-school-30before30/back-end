@@ -28,7 +28,11 @@ async function add(user) {
     return findById(id);
 }
 
-async function update(id, user) {}
+async function update(id, user) {
+    return db('users')
+        .update(user)
+        .where({ id });
+}
 
 async function remove(id) {
     return db('users')
