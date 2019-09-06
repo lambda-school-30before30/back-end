@@ -28,6 +28,8 @@ function updateComment(id, changes) {
     .update(changes, "");
 }
 
-function deleteComment() {
-  return null;
+function deleteComment(id) {
+  return db("comments")
+    .where({ id })
+    .del();
 }

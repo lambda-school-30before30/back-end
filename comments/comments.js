@@ -35,4 +35,15 @@ router.put("/:id", async (req, res) => {
   }
 });
 
+router.delete("/:comment_id", async (req, res) => {
+  const { comment_id } = req.params;
+
+  try {
+    const deleted = await commentsHelper.deleteComment(comment_id);
+    res.status(200).json(deleted);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 module.exports = router;
