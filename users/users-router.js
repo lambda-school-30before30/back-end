@@ -16,7 +16,7 @@ router.put('/:id', (req, res) => {
 
     Users.update(id, userInfo)
         .then(updated => {
-            res.json({ message: `Updated user id ${id}`, updated });
+            res.json({ message: `Updated user ${id}`, updated });
         })
         .catch(err => res.status(500).json(err));
 });
@@ -26,7 +26,7 @@ router.delete('/:id', (req, res) => {
 
     Users.remove(id)
         .then(removed => {
-            res.json({ message: `Deleted user id ${id}`, removed });
+            res.json({ message: `Deleted user ${id}`, removed });
         })
         .catch(err => res.status(500).json(err));
 });

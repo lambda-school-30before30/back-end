@@ -7,16 +7,21 @@ const Users = require('../users/users-model');
 
 router.post('/register', (req, res) => {
     let user = req.body;
-    const hash = bcrypt.hashSync(user.password, 10);
-    user.password = hash;
 
-    Users.add(user)
-        .then(saved => {
-            res.status(201).json(saved);
-        })
-        .catch(err => {
-            res.status(500).json(err);
-        });
+    if (user.username && user.password) {
+        const hash = bcrypt.hashSync(user.password, 10);
+        user.password = hash;
+
+        Users.add(user)
+            .then(saved => {
+                res.status(201).json(saved);
+            })
+            .catch(err => {
+                res.status(500).json({ message: 'Error: Could not add new user', err });
+            });
+    } else {
+        res.status(400).json({ message: 'Error: Invalid username and/or password' });
+    }
 });
 
 router.post('/login', (req, res) => {
@@ -35,7 +40,7 @@ router.post('/login', (req, res) => {
                 });
             } else {
                 res.status(401).json({
-                    message: `Error: Invalid credentials!`
+                    message: `Error: Invalid credentials`
                 });
             }
         })
@@ -50,7 +55,7 @@ router.delete('/logout', (req, res) => {
             if (err) {
                 res.status(400).send('Error: Unable to logout');
             } else {
-                res.send('Logged out!');
+                res.send('Logged out');
             }
         });
     } else {
