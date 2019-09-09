@@ -2,6 +2,7 @@ const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const secret = require('../config/secret.js');
+const restricted = require('./restricted-middleware.js');
 
 const Users = require('../users/users-model');
 
@@ -49,7 +50,7 @@ router.post('/login', (req, res) => {
         });
 });
 
-router.delete('/logout', (req, res) => {
+router.delete('/logout', restricted, (req, res) => {
     if (req.session.token) {
         req.session.destroy(err => {
             if (err) {

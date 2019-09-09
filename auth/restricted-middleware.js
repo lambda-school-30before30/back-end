@@ -7,13 +7,13 @@ module.exports = (req, res, next) => {
     if (token) {
         jwt.verify(token, secrets.jwtSecret, (err, decodedToken) => {
             if (err) {
-                res.status(401).json({ message: 'Error: You do not have permission to view this content (Incorrect Credentials)' });
+                res.status(401).json({ message: 'Error: You do not have permission to this content (Incorrect Credentials)' });
             } else {
                 req.decodedToken = decodedToken;
                 next();
             }
         });
     } else {
-        res.status(401).json({ message: 'Error: You do not have permission to view this content (Missing Credentials)' });
+        res.status(401).json({ message: 'Error: You do not have permission to this content (Missing Credentials)' });
     }
 };

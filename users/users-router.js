@@ -1,8 +1,9 @@
 const router = require('express').Router();
+const restricted = require('../auth/restricted-middleware.js');
 
 const Users = require('./users-model');
 
-router.get('/', (req, res) => {
+router.get('/', restricted, (req, res) => {
     Users.find()
         .then(users => {
             res.json(users);
@@ -10,7 +11,7 @@ router.get('/', (req, res) => {
         .catch(err => res.send(err));
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', restricted, (req, res) => {
     const { id } = req.params;
     const userInfo = req.body;
 
@@ -21,7 +22,7 @@ router.put('/:id', (req, res) => {
         .catch(err => res.status(500).json(err));
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', restricted, (req, res) => {
     const { id } = req.params;
 
     Users.remove(id)
