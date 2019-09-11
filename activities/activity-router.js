@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const restricted = require('../auth/restricted-middleware');
 
 const Activities = require('./activity-model');
 
@@ -22,7 +23,7 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', restricted, async (req, res) => {
     const activityData = req.body;
 
     try {
@@ -33,7 +34,7 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', restricted, async (req, res) => {
     try {
         const activity = await Activities.update(req.params.id, req.body);
         if (activity) {
@@ -46,7 +47,7 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', restricted, async (req, res) => {
     try {
         const count = await Activities.remove(req.params.id);
         if (count > 0) {
