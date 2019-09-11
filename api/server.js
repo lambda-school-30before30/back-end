@@ -5,7 +5,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const secret = require('../config/secret.js');
 
-const activityRouter = require('../activities/activity-router');
+const activityRouter = require("../activities/activity-router");
 const authRouter = require("../auth/auth-router.js");
 const usersRouter = require("../users/users-router.js");
 const commentsRouter = require("../comments/comments.js");
@@ -35,11 +35,10 @@ const sessionOptions = {
 const db = require('../database/dbConfig');
 
 server.use(helmet());
-server.use(cors());
 server.use(express.json());
 server.use(session(sessionOptions));
 
-server.use('/api/activities', activityRouter);
+server.use("/api/activities", activityRouter);
 server.use("/api/auth", authRouter);
 server.use("/api/users", usersRouter);
 server.use("/api/comments", commentsRouter);
