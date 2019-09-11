@@ -2,14 +2,14 @@ const db = require('../database/dbConfig');
 
 module.exports = {
     add,
-    getActivities,
+    find,
     findBy,
     findById,
     update,
     remove
 };
 
-function getActivities() {
+function find() {
     return db('activities').select('id', 'title', 'description');
 }
 
