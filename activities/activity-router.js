@@ -3,15 +3,18 @@ const restricted = require('../auth/restricted-middleware');
 
 const Activities = require('./activity-model');
 
-router.get('/', async (req, res) => {
+router.get('/', restricted, async (req, res) => {
     try {
-        const activities = (await Activities.find()).map(activity => {
-            return {
-                ...activity,
-                isPublic: activity.isPublic == 0 ? false : true,
-                isCompleted: activity.isCompleted == 0 ? false : true
-            }
-        })
+        const activities = await Activities.find().where({ isPublic: false});
+        res.status(200).json(activities);
+    } catch (err) {
+        res.status(500).json({ message: 'Could not get activities' });
+    }
+});
+
+router.get('/public', async (req, res) => {
+    try {
+        const activities = await Activities.find().where({ isPublic: true});
         res.status(200).json(activities);
     } catch (err) {
         res.status(500).json({ message: 'Could not get activities' });
