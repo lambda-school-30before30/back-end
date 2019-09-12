@@ -51,7 +51,7 @@ describe("Comments", () => {
       };
 
       request(server)
-        .post("/:id")
+        .post("/api/comments/:id")
         .send(comment)
         .expect(204);
     });
@@ -64,7 +64,7 @@ describe("Comments", () => {
       };
 
       request(server)
-        .post("/:id")
+        .post("/api/comments/:id")
         .send(comment)
         .expect(201);
     });
@@ -84,7 +84,7 @@ describe("Comments", () => {
       });
 
       request(server)
-        .put("/")
+        .put("/api/comments")
         .send(comment)
         .expect(201);
     });
@@ -101,7 +101,7 @@ describe("Comments", () => {
       });
 
       request(server)
-        .put("/")
+        .put("/api/comments")
         .send(comment)
         .expect(204);
     });
