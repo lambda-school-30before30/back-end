@@ -56,7 +56,7 @@ router.delete('/logout', restricted, (req, res) => {
             if (err) {
                 res.status(400).json({ message: 'Error: Unable to logout' });
             } else {
-                res.json({ message: 'Logged out' });
+                res.status(204).json({ message: 'Logged out' });
             }
         });
     } else {
