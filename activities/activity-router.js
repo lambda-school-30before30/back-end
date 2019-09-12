@@ -5,7 +5,13 @@ const Activities = require('./activity-model');
 
 router.get('/', async (req, res) => {
     try {
-        const activities = await Activities.find();
+        const activities = (await Activities.find()).map(activity => {
+            return {
+                ...activity,
+                isPublic: activity.isPublic == 0 ? false : true,
+                isCompleted: activity.isCompleted == 0 ? false : true
+            }
+        })
         res.status(200).json(activities);
     } catch (err) {
         res.status(500).json({ message: 'Could not get activities' });
