@@ -21,7 +21,7 @@ describe('users-model.js', () => {
             });
 
             const users = await db('users');
-            expect(users).toHaveLength(2);
+            await expect(users).toHaveLength(2);
         });
     });
 
@@ -50,7 +50,7 @@ describe('users-model.js', () => {
                 .where('username', '=', 'testuser1')
                 .first();
 
-            expect(user.email).toBe('testuser1updated@email.com');
+            await expect(user.email).toBe('testuser1updated@email.com');
         });
     });
 
@@ -76,7 +76,7 @@ describe('users-model.js', () => {
 
             const users = await db('users');
 
-            expect(users).toHaveLength(0);
+            await expect(users).toHaveLength(0);
         });
     });
 
@@ -99,7 +99,7 @@ describe('users-model.js', () => {
 
             const users = await db('users');
 
-            expect(users).toEqual([
+            await expect(users).toEqual([
                 {
                     id: 1,
                     username: 'testuser1',
@@ -135,7 +135,7 @@ describe('users-model.js', () => {
 
             const user = await Users.findBy({ username: 'testuser1' });
 
-            expect(user.username).toBe('testuser1');
+            await expect(user.username).toBe('testuser1');
         });
     });
 
@@ -158,7 +158,7 @@ describe('users-model.js', () => {
 
             const user = await Users.findById(2);
 
-            expect(user.id).toBe(2);
+            await expect(user.id).toBe(2);
         });
     });
 });
