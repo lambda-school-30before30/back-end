@@ -97,20 +97,22 @@ describe('auth-router.js', () => {
         it('should return 204', async () => {
             // login
             const agent = superagent.agent();
-            const res = await request(server)
-                .post('/api/auth/login')
+
+            // const res = await superagent
+            //     .get('http://localhost:5000/')
+
+            const res = await agent
+                .post('http://localhost:5000/api/auth/login')
                 .send({
                     username: 'testuser',
                     password: 'password123'
                 })
                 .set('Content-Type', 'application/json')
-                .then(res => {
-                    console.log(res.body.token);
-                    console.log(agent);
-                    agent.jar.setCookie(res);
+                .then(() => {
+                    return agent.delete('http://localhost:5000/api/auth/logout');
                 });
 
-            expect(false).toBe(204);
+            expect(res.status).toBe(204);
         });
 
         // test return type
