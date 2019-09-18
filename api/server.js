@@ -19,7 +19,7 @@ server.use(cors());
 server.use("/api/activities", activityRouter);
 server.use("/api/auth", authRouter);
 server.use("/api/users", usersRouter);
-server.use("/api/comments", commentsRouter);
+server.use("/api/activities", commentsRouter);
 
 server.get("/", (req, res) => {
   res.send(`<h1>BUILD WEEK BAYBAY</h1>`);

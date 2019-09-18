@@ -1,10 +1,10 @@
 const router = require("express").Router();
 const commentsHelper = require("./commentsModel");
 
-router.get("/:id", async (req, res) => {
-  const { id } = req.params;
+router.get("/:activity_id/comments", async (req, res) => {
+  const { activity_id } = req.params;
   try {
-    const comments = await commentsHelper.getComments(id);
+    const comments = await commentsHelper.getComments(activity_id);
     if (comments.length < 1) {
       res.status(204).json({ message: "id not found" });
     } else {
