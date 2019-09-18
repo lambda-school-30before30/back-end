@@ -1,10 +1,10 @@
 const router = require("express").Router();
 const commentsHelper = require("./commentsModel");
 
-router.get("/:id", async (req, res) => {
-  const { id } = req.params;
+router.get("/:activity_id/comments", async (req, res) => {
+  const { activity_id } = req.params;
   try {
-    const comments = await commentsHelper.getComments(id);
+    const comments = await commentsHelper.getComments(activity_id);
     if (comments.length < 1) {
       res.status(204).json({ message: "id not found" });
     } else {
@@ -15,19 +15,21 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.post("/:id", async (req, res) => {
-  const body = req.body;
+router.post("/:activity_id/comments", async (req, res) => {
+  let body = req.body;
+  // let id = body.activity_id;
+  // id = req.params.activity_id;
 
   if (!body.comment) {
     return res.status(204).json({ message: "Please provide a comment" });
-  } else if (!body.activity_id) {
-    return res.status(204).json({ message: "Please provide an activity ID" });
   } else if (!body.user_id) {
     return res
       .status(204)
       .json({ message: "Please provide user's id that posted comment" });
+  } else {
+    body = { ...body, activity_id: req.params.activity_id };
   }
-
+  console.log(body);
   try {
     const comment = await commentsHelper.addComment(body);
 
@@ -37,24 +39,23 @@ router.post("/:id", async (req, res) => {
   }
 });
 
-router.put("/", async (req, res) => {
+router.put("/comments/:comment_id", async (req, res) => {
   const body = req.body;
+  const { comment_id } = req.params;
 
   if (!body.comment) {
     return res.status(204).json({ message: "Please provide edited comment" });
-  } else if (!body.id) {
-    return res.status(204).json({ message: "No ID provided" });
   }
 
   try {
-    const update = await commentsHelper.updateComment(body.id, body);
+    const update = await commentsHelper.updateComment(comment_id, body);
     res.status(201).json(update);
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-router.delete("/delete/:comment_id", async (req, res) => {
+router.delete("/comments/:comment_id", async (req, res) => {
   const { comment_id } = req.params;
 
   try {
