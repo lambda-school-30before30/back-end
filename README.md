@@ -43,20 +43,20 @@ Research
 
 - This is the “bread and butter” of the app, this is what makes your app yours. Calculate how long it takes to implement these features and triple the time estimated. That way you’ll have plenty of time to finish. It is preferred to drop features and spend more time working on your MVP features if needed.
 
-| Request Methods |       API Endpoint        |                                                                                             Description |
-| --------------- | :-----------------------: | ------------------------------------------------------------------------------------------------------: |
-| POST            |    /api/auth/register     |        allows user to create a new user account with username, email, and password. Responds with a 201 |
-| POST            |      /api/auth/login      |                        logs in user, returns json response 200 with message 'Logged in as \${username}' |
-| DELETE          |     /api/auth/logout      |                                                                   logs user out and responds with a 204 |
-| GET             |        /api/users/        |                                                      returns a list of all users. Returns status of 200 |
-| PUT             |      /api/users/:id       | allows logged in user to edit their username, email, or password. Returns message 'Updated user \${id}' |
-| DELETE          |      /api/users/:id       |                    allows logged in user to delete their account. Returns message 'Deleted user \${id}' |
-| GET             |      /api/activities      |                                                  returns list of all activities. Returns status of 200. |
-| GET             |    /api/activities/:id    |                                                   returns activity with that id. Returns status of 200. |
-| POST            |      /api/activities      |                                              allows user to create new activity. Returns status of 201. |
-| PUT             |    /api/activities/:id    |                                            allows user to update activity by id. Returns status of 200. |
-| DELETE          |    /api/activities/:id    |                         allows user to delete activity. Returns message 'The activity has been deleted. |
-| GET             |     /api/comments/:id     |                                                     returns all comments for the activity with that id. |
-| POST            |     /api/comments/:id     |                                           allows user to create new comments for activity with that id. |
-| PUT             |     /api/comments/:id     |                                           allows user to update a comment on the activity with that id. |
-| DELETE          | /api/comments/:comment_id |                                         allows user to delete a comment from the activity with that id. |
+| Request Methods |             API Endpoint              |                                                                                             Description |
+| --------------- | :-----------------------------------: | ------------------------------------------------------------------------------------------------------: |
+| POST            |          /api/auth/register           |        allows user to create a new user account with username, email, and password. Responds with a 201 |
+| POST            |            /api/auth/login            |                        logs in user, returns json response 200 with message 'Logged in as \${username}' |
+| DELETE          |           /api/auth/logout            |                                                                   logs user out and responds with a 204 |
+| GET             |              /api/users/              |                                                      returns a list of all users. Returns status of 200 |
+| PUT             |            /api/users/:id             | allows logged in user to edit their username, email, or password. Returns message 'Updated user \${id}' |
+| DELETE          |            /api/users/:id             |                    allows logged in user to delete their account. Returns message 'Deleted user \${id}' |
+| GET             |            /api/activities            |                                                  returns list of all activities. Returns status of 200. |
+| GET             |          /api/activities/:id          |                                                   returns activity with that id. Returns status of 200. |
+| POST            |            /api/activities            |                                              allows user to create new activity. Returns status of 201. |
+| PUT             |          /api/activities/:id          |                                            allows user to update activity by id. Returns status of 200. |
+| DELETE          |          /api/activities/:id          |                         allows user to delete activity. Returns message 'The activity has been deleted. |
+| GET             | /api/activities/:activity_id/comments |                                                     returns all comments for the activity with that id. |
+| POST            | /api/activities/:activity_id/comments |                                           allows user to create new comments for activity with that id. |
+| PUT             | /api/activities/comments/:comment_id  |                                                   allows user to update a comment with that comment id. |
+| DELETE          | /api/activities/comments/:comment_id  |                                                   allows user to delete a comment with that comment id. |
