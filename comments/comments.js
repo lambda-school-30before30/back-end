@@ -39,7 +39,7 @@ router.post("/:activity_id/comments", async (req, res) => {
   }
 });
 
-router.put("/:activty_id/comments/:comment_id", async (req, res) => {
+router.put("/comments/:comment_id", async (req, res) => {
   const body = req.body;
   const { comment_id } = req.params;
 
@@ -55,7 +55,7 @@ router.put("/:activty_id/comments/:comment_id", async (req, res) => {
   }
 });
 
-router.delete("/:activty_id/comments/:comment_id", async (req, res) => {
+router.delete("/comments/:comment_id", async (req, res) => {
   const { comment_id } = req.params;
 
   try {
