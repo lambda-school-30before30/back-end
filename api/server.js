@@ -4,6 +4,7 @@ const knexSessionStore = require("connect-session-knex")(session);
 const cors = require("cors");
 const helmet = require("helmet");
 const secret = require("../config/secret.js");
+const bodyParser = require("body-parser");
 
 const activityRouter = require("../activities/activity-router");
 const authRouter = require("../auth/auth-router.js");
@@ -35,7 +36,9 @@ const sessionOptions = {
 const db = require("../database/dbConfig");
 
 server.use(helmet());
-server.use(express.json());
+// server.use(express.json());
+server.use(bodyParser.json());
+server.use(bodyParser.urlencoded({ extended: true }));
 server.use(cors());
 server.use(session(sessionOptions));
 
