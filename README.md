@@ -1,4 +1,4 @@
-Deployed at https://thirty-before-thirty.herokuapp.com/
+Deployed at https://pure-badlands-64350.herokuapp.com/
 
 ### Proposal
 
@@ -54,6 +54,7 @@ Research
 | PUT             |            /api/users/:id             | allows logged in user to edit their username, email, or password. Returns message 'Updated user \${id}' |
 | DELETE          |            /api/users/:id             |                    allows logged in user to delete their account. Returns message 'Deleted user \${id}' |
 | GET             |            /api/activities            |                                                  returns list of all activities. Returns status of 200. |
+| GET             |        /api/activities/public         |       returns list of all public activities without needing to be authenticated. Returns status of 200. |
 | GET             |          /api/activities/:id          |                                                   returns activity with that id. Returns status of 200. |
 | POST            |            /api/activities            |                                              allows user to create new activity. Returns status of 201. |
 | PUT             |          /api/activities/:id          |                                            allows user to update activity by id. Returns status of 200. |
